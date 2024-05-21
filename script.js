@@ -23,5 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    function generateAnswer() {
+        let digits = '0123456789'.split('');
+        let answer = '';
+        for (let i = 0; i < 4; i++) {
+            const index = Math.floor(Math.random() * digits.length);
+            answer += digits.splice(index, 1);
+        }
+        return answer;
+    }
+
     
 });
