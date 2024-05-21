@@ -32,6 +32,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return answer;
     }
+    function validateGuess(guess) {
+        if (guess.length !== 4 || isNaN(guess)) return false;
+        let uniqueDigits = new Set(guess.split(''));
+        return uniqueDigits.size === 4;
+    }
+
+    function checkGuess(guess) {
+        let strikes = 0, balls = 0;
+        for (let i = 0; i < 4; i++) {
+            if (guess[i] === answer[i]) {
+                strikes++;
+            } else if (answer.includes(guess[i])) {
+                balls++;
+            }
+        }
+        return { strikes, balls, message: `Strikes: ${strikes}, Balls: ${balls}` };
+    }
+
+    function resetGame() {
+        answer = generateAnswer();
+        attempts = 0;
+        history.innerHTML = '';
+        result.textContent = '';
+    }
 
     
 });
